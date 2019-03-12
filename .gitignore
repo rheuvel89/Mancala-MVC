@@ -1,6 +1,9 @@
 # IntelliJ
 .idea
 
+# Maven
+target/
+
 # Eclipse
 bin
 .metadata
