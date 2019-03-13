@@ -15,15 +15,29 @@ public class MancalaServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException { //TODO: fix winner and draw
         if (mancala.gameOver()) {
-            Optional<Player> winner = mancala.getWinner();
-            request.setAttribute("mancala", new MancalaData(mancala, winner.isPresent() ? winner.get() : null));
+            String message = getWinnerMessage();
+            request.setAttribute("mancala", new MancalaData(mancala, message));
             RequestDispatcher rd = request.getRequestDispatcher("../WEB-INF/jsp/endgame.jsp");
             rd.forward(request, response);
         } else {
-            request.setAttribute("mancala", new MancalaData(mancala, player1));
+            String message = getPlayerTurnMessage();
+            request.setAttribute("mancala", new MancalaData(mancala, message));
             RequestDispatcher rd = request.getRequestDispatcher("../WEB-INF/jsp/mancala.jsp");
             rd.forward(request, response);
         }
+    }
+
+    private String getWinnerMessage() {
+        Optional<Player> winner = mancala.getWinner();
+        if (!winner.isPresent()) {
+            return  "It is a draw!";
+        } else {
+            return "You have won player " + (winner.get() == player1 ? "1" : "2") + "!!!";
+        }
+    }
+
+    private String getPlayerTurnMessage() {
+        return "Your turn Player " + (mancala.getActivePlayer() == player1 ? "1" : "2") + "!";
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {

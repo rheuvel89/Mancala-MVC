@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Current Person</title>
+		<title>Mancala</title>
         <link rel="stylesheet" href="../css/mancala.css">
 	</head>
 	<body>
@@ -64,14 +64,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td/>
-                    <td/>
-                    <td/>
-                    <td/>
-                    <td/>
-                    <td/>
-                    <td/>
-                    <td/>
+                    <td columnspan = 6/>
                 </tr>
                 <tr>
                     <td>
@@ -124,7 +117,7 @@
                     <button class="button restartButton" id="restartButton">New Game</button>
                 </form>
 
-                <h3>Your turn player <jsp:getProperty name="mancala" property="relevantPlayerId"/>!</h3>
+                <h3><jsp:getProperty name="mancala" property="message"/></h3>
             </div>
         </div>
 	</body>

@@ -18,6 +18,13 @@
             <artifactId>javax.servlet-api</artifactId>
             <version>3.1.0</version>
         </dependency>
+        <dependency>
+            <groupId>nl.sogyo.mancala</groupId>
+            <artifactId>Mancala-1.0-SNAPSHOT</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/Mancala-1.0-SNAPSHOT.jar</systemPath>
+        </dependency>
     </dependencies>
 
     <build>

@@ -2,20 +2,18 @@ package nl.sogyo.mancala;
 
 public class MancalaData {
 
-    private int relevantPlayerId;
+    private String message;
     private int[] bowls = new int[14];
-    private boolean draw;
 
-    public MancalaData(Mancala mancala, Player player) {
-        draw = player == null;
-        relevantPlayerId = mancala.getActivePlayer() == player ? 1 : 2;
+    public MancalaData(Mancala mancala, String message) {
+        this.message = message;
         for (int i = 0 ; i < bowls.length ; i++) {
             bowls[i] = mancala.getCountOf(i);
         }
     }
 
-    public int getRelevantPlayerId() {
-        return relevantPlayerId;
+    public String getMessage() {
+        return message;
     }
 
     public int getBowl1Count() {
@@ -41,9 +39,11 @@ public class MancalaData {
     public int getBowl6Count() {
         return bowls[5];
     }
+
     public int getKalaha1Count() {
         return bowls[6];
     }
+
     public int getBowl7Count() {
         return bowls[7];
     }
@@ -72,8 +72,8 @@ public class MancalaData {
         return bowls[13];
     }
 
-    public boolean getDraw() {
-        return draw;
+    public int[] getBowlCount() {
+        return bowls;
     }
 
 }
