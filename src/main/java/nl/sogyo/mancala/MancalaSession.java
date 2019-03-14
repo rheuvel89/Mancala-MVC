@@ -1,6 +1,6 @@
 package nl.sogyo.mancala;
 
-public class MancalaData {
+public class MancalaSession {
 
     private Mancala mancala;
     private Player player1;
@@ -8,10 +8,9 @@ public class MancalaData {
     private int[] bowls = new int[14];
 
 
-    public MancalaData(Mancala mancala, String message) {
-        this.mancala = mancala;
-        this.player1 = player1;
-        this.message = message;
+    public MancalaSession() {
+        mancala = new Mancala();
+        player1 = mancala.getActivePlayer();
         for (int i = 0 ; i < bowls.length ; i++) {
             bowls[i] = mancala.getCountOf(i);
         }
@@ -23,6 +22,10 @@ public class MancalaData {
 
     public Player getPlayer1() {
         return player1;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public String getMessage() {

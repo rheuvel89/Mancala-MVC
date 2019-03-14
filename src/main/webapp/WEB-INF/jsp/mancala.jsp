@@ -5,7 +5,7 @@
         <link rel="stylesheet" href="../css/mancala.css">
 	</head>
 	<body>
-	    <jsp:useBean id="mancala" class="nl.sogyo.mancala.MancalaData" scope="request"/>
+	    <jsp:useBean id="mancala" class="nl.sogyo.mancala.MancalaData" scope="session"/>
         <div class="center" >
             <h1>Mancala</h1>
             <table class=board>
