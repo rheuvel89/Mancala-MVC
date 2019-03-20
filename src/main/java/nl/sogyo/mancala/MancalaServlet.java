@@ -11,21 +11,21 @@ import java.util.Optional;
 
 public class MancalaServlet extends HttpServlet {
 
-    Mancala mancala;
+    //Mancala mancala;//TODO: install mancala in mvn repo and call as dependency
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException { //TODO: fix winner and draw
         HttpSession session = request.getSession();
-        mancala = (Mancala)session.getAttribute("session");
+        Mancala mancala = (Mancala)session.getAttribute("session");
         if (mancala == null) {
             mancala = new Mancala();
             session.setAttribute("session", mancala);
         }
-        dispatch(request, response, session);
+        dispatch(request, response, session, mancala);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession session = request.getSession();
-        mancala = (Mancala)session.getAttribute("session");
+        Mancala mancala = (Mancala)session.getAttribute("session");
         if (mancala == null || request.getPathInfo().matches("/restart")) {
             mancala = new Mancala();
             session.setAttribute("session", mancala);
@@ -34,10 +34,10 @@ public class MancalaServlet extends HttpServlet {
             position = position < 7 ? position - 1 : position;
             mancala.doTurn(position);
         }
-        dispatch(request, response, session);
+        dispatch(request, response, session, mancala);
     }
 
-    private void dispatch(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException, ServletException {
+    private void dispatch(HttpServletRequest request, HttpServletResponse response, HttpSession session, Mancala mancala) throws IOException, ServletException {
         if (mancala.gameOver()) {
             String message = getWinnerMessage(mancala, mancala.getWinner());
             request.setAttribute("data", new MancalaData(mancala, message));
